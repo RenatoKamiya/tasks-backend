@@ -36,16 +36,22 @@ pipeline {
                 deploy adapters: [tomcat8(credentialsId: 'tomcatGCP', path: '', url: 'http://35.198.21.135:8001')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
             }
         }
-        stage ('Api Test'){
+            stage ('Api Test'){
             steps {
                 dir('task-api-test') {
                 git credentialsId: 'GitHub', url: 'https://github.com/RenatoKamiya/tasks-api-test'
                 bat 'mvn test'
             }
-    
+        }
     }
-
+    stage ('Deploy Frontend'){
+        steps {
+            dir('frontend'){
+                git credentialsId: 'GitHub', url: 'https://github.com/RenatoKamiya/tasks-frontend'
+                 bat 'mvn clean package'
+                deploy adapters: [tomcat8(credentialsId: 'tomcatGCP', path: '', url: 'http://35.198.21.135:8001')], contextPath: 'tasks', war: 'target/tasks.war'
+            }
+        }
+     }
+   }
 }
-}
-}
-
