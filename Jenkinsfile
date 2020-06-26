@@ -53,5 +53,19 @@ pipeline {
             }
         }
      }
-   }
+     //Testes funcionais com selenium não foram feitos - 
+     //stage ('functional Test'){
+       //     steps {
+         //       dir('tasks-funtional-test') {
+           //     git credentialsId: 'GitHub', url: 'https://github.com/RenatoKamiya/tasks-api-test'
+             //   bat 'mvn test'
+           // }
+        //}
+        post {
+            always 
+            junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml, tasks-api-test/target/surefire-reports/*.xml'
+        }
+     }
+
+
 }
