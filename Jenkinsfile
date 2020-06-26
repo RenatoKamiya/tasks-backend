@@ -66,10 +66,9 @@ pipeline {
             always {
             junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml, tasks-api-test/target/surefire-reports/*.xml'
         }
-     }
      unsuccessful {
          emailext attachLog: true, body: 'Visualize o log', subject: 'Falaha no build', to: 'renatokamiya012+jenkins@gmail.com'
-         
+     } 
      fixed {
          emailext attachLog: true, body: 'Visualize o log', subject: 'build consertado', to: 'renatokamiya012+jenkins@gmail.com'
          }
