@@ -52,7 +52,8 @@ pipeline {
                 deploy adapters: [tomcat8(credentialsId: 'tomcatGCP', path: '', url: 'http://35.198.21.135:8001')], contextPath: 'tasks', war: 'target/tasks.war'
             }
         }
-     }
+      }
+    }
      //Testes funcionais com selenium não foram feitos - 
      //stage ('functional Test'){
        //     steps {
